@@ -5,7 +5,7 @@ export default function Leaderboard() {
     const [leaderboard, setLeaderboard] = useState()
 
     useEffect(() => {
-        fetch("http://localhost:5000/leaderboard")
+        fetch("https://chess-clock-kara5-backend.onrender.com/leaderboard")
             .then(response => response.json())
             .then(data => {
                 setLeaderboard(data)

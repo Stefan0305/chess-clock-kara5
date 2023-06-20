@@ -2,9 +2,9 @@ import { useState } from 'react';
 
 export default function Register() {
 
-    const [playerName, setPlayerName] = useState()
+    const [playerName, setPlayerName] = useState('')
 
-    function registerPlayer(event) {
+    async function registerPlayer(event) {
         event.preventDefault()
         if(playerName === '') {
             alert("Enter player name!")
@@ -14,19 +14,20 @@ export default function Register() {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({"name": playerName})
+            body: JSON.stringify({playerName})
         };
 
-        fetch("http://localhost:5000/player/add", requestOptions)
-        .then((response) => {
-            if (response.status !== 200) {
-                console.log(response)
-                throw new Error(response);
-              }
-        })
-        .catch((err) => {
-            console.log()
-        })
+        const response= await fetch("https://chess-clock-kara5-backend.onrender.com/player/add", requestOptions)
+        const json= await response.json()
+
+        if(!response.ok){
+            alert(json.error)
+        }
+        else {
+            setPlayerName('')
+            alert(json.message)
+        }
+        
     }
 
     return <div>
