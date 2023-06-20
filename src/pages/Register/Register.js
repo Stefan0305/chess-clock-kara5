@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Register() {
 
@@ -17,7 +18,7 @@ export default function Register() {
             body: JSON.stringify({playerName})
         };
 
-        const response= await fetch("https://chess-clock-kara5-backend.onrender.com/player/add", requestOptions)
+        const response= await fetch(`${process.env.REACT_APP_DEV_SERVER}/player/add`, requestOptions)
         const json= await response.json()
 
         if(!response.ok){
@@ -31,7 +32,7 @@ export default function Register() {
     }
 
     return <div>
-        <div><a href="/">Home</a></div>
+        <div><Link to="/">Home</Link></div>
         <div>
             <form action="" method="post" onSubmit= {registerPlayer}>
                 <label htmlFor="name">Name:</label>

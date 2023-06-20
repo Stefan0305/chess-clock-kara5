@@ -1,12 +1,14 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useContext } from "react"
+import { TimeContext } from "../../context/TimeContext";
+import { Link } from 'react-router-dom';
 
 export default function Clock() {
-
-    const [clock1, setClock1] = useState(5);
-    const [clock2, setClock2] = useState(5);
+    
+    const {mode, setMode} = useContext(TimeContext)
+    const [clock1, setClock1] = useState(mode);
+    const [clock2, setClock2] = useState(mode);
     const [changeTurn, setChangeTurn] = useState(0);
     
-
     useEffect(() => {
         let interval;
         window.clearInterval(interval);
@@ -42,7 +44,7 @@ export default function Clock() {
 
 
     return <div>
-        <a href="/">Home</a>
+        <Link to="/">Home</Link>
         <div>{clock1} <button onClick={() => setChangeTurn(2)}>End move</button> </div>
         <div>{clock2} <button onClick={() => setChangeTurn(1)}>End move</button> </div>
         <button onClick={() => {setChangeTurn(0)}}>Pause game!</button>
