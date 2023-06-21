@@ -10,7 +10,6 @@ export default function Leaderboard() {
     const [playerData, setPlayerData] = useState('')
 
     useEffect(() => {
-        console.log(process.env.REACT_APP_DEV_SERVER)
         fetch(`${process.env.REACT_APP_DEV_SERVER}/leaderboard`)
             .then(response => response.json())
             .then(data => {
