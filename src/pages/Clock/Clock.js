@@ -12,23 +12,23 @@ export default function Clock() {
     const [clock2, setClock2] = useState(mode);
     const [changeTurn, setChangeTurn] = useState(0);
     const [gameReady, setGameReady] = useState(false)
+    const [gameOver, setGameOver] = useState(false)
     const [player1name, setPlayer1name] = useState()
     const [player2name, setPlayer2name] = useState()
     const [player1ID, setPlayer1ID] = useState()
     const [player2ID, setPlayer2ID] = useState()
+    const [winner, setWinner] = useState()
+    const [loser, setLoser] = useState()
 
     useEffect(() => {
         let interval;
-        window.clearInterval(interval);
         if (changeTurn === 1) {
             interval = setInterval(() => {
-                console.log("Player 1 turn")
                 setClock1(prevClock1 => prevClock1 - 1)
             }, 1000);
         }
         else if (changeTurn === 2) {
             interval = setInterval(() => {
-                console.log("Player 2 turn")
                 setClock2(prevClock2 => prevClock2 - 1)
             }, 1000);
         }
@@ -38,30 +38,44 @@ export default function Clock() {
     useEffect(() => {
         if (clock1 <= 0) {
             setChangeTurn(0)
-            document.querySelector("#winner").innerHTML = "Winner is player 2";
-            return;
+            setWinner(player2ID)
+            setLoser(player1ID)
+            setGameOver(true)
         }
-
         if (clock2 <= 0) {
             setChangeTurn(0)
-            document.querySelector("#winner").innerHTML = "Winner is player 1";
-            return;
+            setWinner(player1ID)
+            setLoser(player2ID)
+            setGameOver(true)
         }
     }, [clock1, clock2])
+
+    useEffect(() => {
+        if (gameOver === true) {
+            const requestOptions = {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' }
+            };
+            fetch(`${process.env.REACT_APP_DEV_SERVER}/new-game/update-results/?winner=${winner}&loser=${loser}`, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                })
+        }
+    }, [gameOver])
 
 
     return <div>
         <Link to="/">Home</Link>
-        { gameReady ?
+        {gameReady ?
             <div className="clock">
-                <div>{clock1} <button onClick={() => setChangeTurn(2)}>End move</button> </div>
                 <div>{clock1} <button onClick={() => setChangeTurn(2)}>End move</button> </div>
                 <div>{clock2} <button onClick={() => setChangeTurn(1)}>End move</button> </div>
                 <button onClick={() => { setChangeTurn(0) }}>Pause game!</button>
                 <div id="winner"></div>
-            </div> 
+            </div>
             :
-            <PlayerPicker setGameReady={setGameReady} player1name={player1name} player2name={player2name} setPlayer1name={setPlayer1name} setPlayer2name={setPlayer2name} setPlayer1ID={setPlayer1ID} setPlayer2ID={setPlayer2ID}/>
+            <PlayerPicker setGameReady={setGameReady} player1name={player1name} player2name={player2name} setPlayer1name={setPlayer1name} setPlayer2name={setPlayer2name} setPlayer1ID={setPlayer1ID} setPlayer2ID={setPlayer2ID} />
         }
     </div>
 }

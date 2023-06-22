@@ -22,7 +22,9 @@ function App() {
         <TimeContext.Provider value={{ mode, setMode }}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="new-game" element={<Clock />} />
+            <Route path="new-game" element={<Clock />}>
+              <Route path="update-results/:winner&loser" />
+            </Route>
             <Route path="leaderboard" element={<Leaderboard />}>
               <Route path="player/:id" />
             </Route>

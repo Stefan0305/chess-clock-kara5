@@ -46,8 +46,8 @@ export default function PlayerPicker(props) {
         <select name="player2" id="player2" onChange={(e) => {
             const arr = e.target.value
             const split = arr.split(',')
-            props.setPlayer1name(split[0])
-            props.setPlayer1ID(split[1])
+            props.setPlayer2name(split[0])
+            props.setPlayer2ID(split[1])
             setSelect2(split[1])
         }}>
             <option value="None">Pick a player</option>
