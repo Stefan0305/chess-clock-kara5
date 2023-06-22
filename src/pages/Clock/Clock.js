@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useContext } from "react"
 import { TimeContext } from "../../context/TimeContext";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // components
 import PlayerPicker from "../../components/PlayerPicker/PlayerPicker";
@@ -20,6 +20,7 @@ export default function Clock() {
     const [player2ID, setPlayer2ID] = useState()
     const [winner, setWinner] = useState()
     const [loser, setLoser] = useState()
+    const navigate = useNavigate()
 
     useEffect(() => {
         let interval;
@@ -65,11 +66,17 @@ export default function Clock() {
         }
     }, [gameOver])
 
-    function togglePause(){
-        if(changeTurn === 0) {
+    function togglePause() {
+        if (changeTurn === 0) {
             setChangeTurn(lastTurn)
         } else {
             setChangeTurn(0)
+        }
+    }
+
+    function quitGame() {
+        if (window.confirm("Are you sure you want to quit? Points will not be scored")) {
+            navigate('/')
         }
     }
 
@@ -78,9 +85,10 @@ export default function Clock() {
         <Link to="/">Home</Link>
         {gameReady ?
             <div className="clock">
-                <div>{clock1} <button onClick={() => {setChangeTurn(2); setLastTurn(2)}}>End move</button> </div>
-                <div>{clock2} <button onClick={() => {setChangeTurn(1); setLastTurn(1)}}>End move</button> </div>
+                <div>{clock1} <button onClick={() => { setChangeTurn(2); setLastTurn(2) }}>End move</button> </div>
+                <div>{clock2} <button onClick={() => { setChangeTurn(1); setLastTurn(1) }}>End move</button> </div>
                 <button onClick={() => { togglePause() }}>Pause game!</button>
+                <button onClick={() => { quitGame() }}>Quit game (use this for draw)</button>
                 <div id="winner"></div>
             </div>
             :
