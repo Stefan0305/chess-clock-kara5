@@ -1,25 +1,21 @@
+import { useContext, useEffect } from 'react';
+import { TimeContext } from '../../context/TimeContext'
+import { Link } from 'react-router-dom';
+
 export default function Home() {
 
-    // const [GameModes, setGameModes] = useState(600);
+    const {mode, setMode} = useContext(TimeContext)
 
-    return <div className="wrapper">
-        <div className="blur"></div>
-        <div className="container">
-            <div className="header">
-                <a className="logo-link" href="https://kara5.com">
-                    <div className="logo"></div>
-                    <div className="logo-text"><p>CHESS</p></div>
-                </a>
-            </div>
-            <div className="button-cont">
-                <a className="home-btn" href="new-game">Start game <br /> Default: 10 min</a>
-            </div>
-            <div className="button-cont">
-                <a className="home-btn" href="leaderboard">Leaderboard</a>
-            </div>
-            <div className="button-cont">
-                <a className="home-btn" href="register">Register new player</a>
-            </div>
+    return <div>
+        <div>
+        <Link to="https://kara5.com"><img src="" alt="[kara5 Logo here]" /></Link>
         </div>
+        <div className="button-cont"><Link to="new-game" className="home-btn" onClick={() => setMode(600)}>Start game <br /> (default: 10 min)</Link></div>
+        <div className="button-cont"><Link to="new-game" className="home-btn"  onClick={() => setMode(120)}>2 min</Link></div>
+        <div className="button-cont"><Link to="new-game" className="home-btn" onClick={() => setMode(300)}>5 min</Link></div>
+        <div className="button-cont"><Link to="new-game" className="home-btn" onClick={() => setMode(900)}>15 min</Link></div>
+        <div className="button-cont"><Link to="new-game" className="home-btn" onClick={() => setMode(5)}>test mode</Link></div>
+        <div className="button-cont"><Link to="leaderboard">Leaderboard</Link></div>
+        <div className="button-cont"><Link to="register">Register new player</Link></div>
     </div>
 }
