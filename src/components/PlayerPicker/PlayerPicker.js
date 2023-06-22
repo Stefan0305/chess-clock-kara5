@@ -7,7 +7,7 @@ export default function PlayerPicker(props) {
     const [select2, setSelect2] = useState('None')
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_PROD_SERVER}/leaderboard`)
+        fetch(`https://chess-clock-kara5-backend.onrender.com/leaderboard`)
             .then(response => response.json())
             .then(data => {
                 setPlayers(data)

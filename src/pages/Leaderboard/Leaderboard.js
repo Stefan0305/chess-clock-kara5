@@ -10,7 +10,7 @@ export default function Leaderboard() {
     const [playerData, setPlayerData] = useState('')
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_PROD_SERVER}/leaderboard`)
+        fetch(`https://chess-clock-kara5-backend.onrender.com/leaderboard`)
             .then(response => response.json())
             .then(data => {
                 setLeaderboard(data)
@@ -18,7 +18,7 @@ export default function Leaderboard() {
     }, [])
 
     async function getPlayerStats(id) {
-        await fetch(`${process.env.REACT_APP_PROD_SERVER}/leaderboard/player/${id}`)
+        await fetch(`https://chess-clock-kara5-backend.onrender.com/leaderboard/player/${id}`)
             .then(response => response.json())
             .then(data => {
                 setPlayerData(data)

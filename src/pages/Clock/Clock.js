@@ -58,7 +58,7 @@ export default function Clock() {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' }
             };
-            fetch(`${process.env.REACT_APP_PROD_SERVER}/new-game/update-results/?winner=${winner}&loser=${loser}`, requestOptions)
+            fetch(`https://chess-clock-kara5-backend.onrender.com/new-game/update-results/?winner=${winner}&loser=${loser}`, requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     console.log(data)
