@@ -8,9 +8,10 @@ import PlayerPicker from "../../components/PlayerPicker/PlayerPicker";
 export default function Clock() {
 
     const { mode, setMode } = useContext(TimeContext)
-    const [clock1, setClock1] = useState(mode);
-    const [clock2, setClock2] = useState(mode);
-    const [changeTurn, setChangeTurn] = useState(0);
+    const [clock1, setClock1] = useState(mode)
+    const [clock2, setClock2] = useState(mode)
+    const [changeTurn, setChangeTurn] = useState(0)
+    const [lastTurn, setLastTurn] = useState(0)
     const [gameReady, setGameReady] = useState(false)
     const [gameOver, setGameOver] = useState(false)
     const [player1name, setPlayer1name] = useState()
@@ -64,14 +65,22 @@ export default function Clock() {
         }
     }, [gameOver])
 
+    function togglePause(){
+        if(changeTurn === 0) {
+            setChangeTurn(lastTurn)
+        } else {
+            setChangeTurn(0)
+        }
+    }
+
 
     return <div>
         <Link to="/">Home</Link>
         {gameReady ?
             <div className="clock">
-                <div>{clock1} <button onClick={() => setChangeTurn(2)}>End move</button> </div>
-                <div>{clock2} <button onClick={() => setChangeTurn(1)}>End move</button> </div>
-                <button onClick={() => { setChangeTurn(0) }}>Pause game!</button>
+                <div>{clock1} <button onClick={() => {setChangeTurn(2); setLastTurn(2)}}>End move</button> </div>
+                <div>{clock2} <button onClick={() => {setChangeTurn(1); setLastTurn(1)}}>End move</button> </div>
+                <button onClick={() => { togglePause() }}>Pause game!</button>
                 <div id="winner"></div>
             </div>
             :
