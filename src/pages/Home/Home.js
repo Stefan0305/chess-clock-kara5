@@ -14,6 +14,7 @@ export default function Home() {
         <div><Link to="new-game" onClick={() => setMode(120)}>2 min</Link></div>
         <div><Link to="new-game" onClick={() => setMode(300)}>5 min</Link></div>
         <div><Link to="new-game" onClick={() => setMode(900)}>15 min</Link></div>
+        <div><Link to="new-game" onClick={() => setMode(5)}>test mode</Link></div>
         <div><Link to="leaderboard">Leaderboard</Link></div>
         <div><Link to="register">Register new player</Link></div>
     </div>
