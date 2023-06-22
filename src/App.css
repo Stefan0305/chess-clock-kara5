@@ -122,6 +122,8 @@
     transition: .15s ease-in-out;
     font-family: 'Optimus';
     font-weight: 600;
+    min-width: 300px;
+    max-width: 500px;
 }
 
 .home-btn:active {
