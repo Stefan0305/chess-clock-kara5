@@ -18,7 +18,7 @@ export default function Register() {
             body: JSON.stringify({playerName})
         };
 
-        const response= await fetch(`${process.env.REACT_APP_DEV_SERVER}/player/add`, requestOptions)
+        const response= await fetch(`${process.env.REACT_APP_PROD_SERVER}/player/add`, requestOptions)
         const json= await response.json()
 
         if(!response.ok){

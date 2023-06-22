@@ -10,7 +10,7 @@ export default function Leaderboard() {
     const [playerData, setPlayerData] = useState('')
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_DEV_SERVER}/leaderboard`)
+        fetch(`${process.env.REACT_APP_PROD_SERVER}/leaderboard`)
             .then(response => response.json())
             .then(data => {
                 setLeaderboard(data)
@@ -18,7 +18,7 @@ export default function Leaderboard() {
     }, [])
 
     async function getPlayerStats(id) {
-        await fetch(`${process.env.REACT_APP_DEV_SERVER}/leaderboard/player/${id}`)
+        await fetch(`${process.env.REACT_APP_PROD_SERVER}/leaderboard/player/${id}`)
             .then(response => response.json())
             .then(data => {
                 setPlayerData(data)
