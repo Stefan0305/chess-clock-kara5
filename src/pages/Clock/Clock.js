@@ -96,7 +96,7 @@ export default function Clock() {
         {
             gameReady ?
                 <div className="clock bg-dark vh-100 vw-100 p-3 d-flex flex-column gap-3 justify-content-between">
-                    <button className={'clock-btn flex-fill btn ' + (changeTurn === 1 ? 'btn-primary' : 'btn-light')} onClick={() => { setChangeTurn(2); setLastTurn(2) }}>
+                    <button className={'clock-btn clock-btn-reversed flex-fill btn ' + (changeTurn === 1 ? 'btn-primary' : 'btn-light')} onClick={() => { setChangeTurn(2); setLastTurn(2) }}>
                         <h5>{player1name}</h5>
                         <p className="p-0 m-0">{convertTime(clock1)}</p>
                     </button>

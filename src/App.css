@@ -145,3 +145,7 @@ body {
 .clock-btn {
   font-size: 100px;
 }
+
+.clock-btn-reversed {
+  transform: rotate(180deg);
+}
