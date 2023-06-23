@@ -1,88 +1,88 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 @font-face {
-    font-family: 'Florence';
-    src: url('fonts/Florence-Regular.ttf');
+  font-family: "Florence";
+  src: url("fonts/Florence-Regular.ttf");
 }
 
 @font-face {
-    font-family: 'Optimus';
-    src: url('fonts/OptimusPrinceps.ttf');
+  font-family: "Optimus";
+  src: url("fonts/OptimusPrinceps.ttf");
 }
 
 @font-face {
-    font-family: 'OptimusSemiBold';
-    src: url('fonts/OptimusPrincepsSemiBold.ttf');
+  font-family: "OptimusSemiBold";
+  src: url("fonts/OptimusPrincepsSemiBold.ttf");
 }
 
 @font-face {
-    font-family: 'Queen';
-    src: url('fonts/TheQueen-Regular.ttf');
+  font-family: "Queen";
+  src: url("fonts/TheQueen-Regular.ttf");
 }
 
 body {
-    /* background-color: rgba(0, 0, 0, 0.6); */
+  /* background-color: rgba(0, 0, 0, 0.6); */
 }
 
 .blur {
-    height: 100%;
-    width: 100%;
-    filter: blur(.1px) brightness(.97);
-    /* background-color: whitesmoke;
+  height: 100%;
+  width: 100%;
+  filter: blur(0.1px) brightness(0.97);
+  /* background-color: whitesmoke;
     mix-blend-mode: darken; */
-    z-index: 998;
-    position: absolute;
-    background-image: url('images/wood_pattern.png');
+  z-index: 998;
+  position: absolute;
+  background-image: url("images/wood_pattern.png");
 }
 
 .wrapper {
-    height: 100vh;
-    width: 100%;
-    background-color: #e9e9e9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+  height: 100vh;
+  width: 100%;
+  background-color: #e9e9e9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .logo-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .logo {
-    height: 100px;
-    width: 300px;
-    background-image: url('images/k5logo.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: -30px;
+  height: 100px;
+  width: 300px;
+  background-image: url("images/k5logo.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: -30px;
 }
 
 .logo-text {
-    /* color: #ddba82; */
-    color: black;
-    font-size: 7vw;
-    line-height: 1.5;
-    font-weight: 700;
-    letter-spacing: 2px;
-    background-image: url('images/wood_pattern.png');
-    font-family: 'Queen';
-    margin-top: 10px;
-    margin-bottom: -60px;
-    background-clip: text;
-    /* font-style: italic; */
+  /* color: #ddba82; */
+  color: black;
+  font-size: 7vw;
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 2px;
+  background-image: url("images/wood_pattern.png");
+  font-family: "Queen";
+  margin-top: 10px;
+  margin-bottom: -60px;
+  background-clip: text;
+  /* font-style: italic; */
 }
 
 /* .container {
@@ -95,35 +95,53 @@ body {
 } */
 
 .header {
-    width: 100%;
-    display: block;
-    text-align: center;
-    padding: 2rem 0;
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding: 2rem 0;
 }
 
 .home-btn {
-    padding: 1.5rem 2.5rem;
-    color: white;
-    margin-top: 2rem;
-    display: block;
-    background-image: url('images/wood_pattern.png');
-    box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.2),
-    inset 0px -5px 0px 0px rgba(0,0,0,0.3),
-    inset 0px 2px 0px 0px rgba(255,255,255,0.5);
-    color: rgba(0, 0, 0, 0.8);
-    text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
-    text-align: center;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: .15s ease-in-out;
-    font-family: 'Optimus';
-    font-weight: 600;
-    width: 100%;
+  padding: 1.5rem 2.5rem;
+  color: white;
+  margin-top: 2rem;
+  display: block;
+  background-image: url("images/wood_pattern.png");
+  box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2),
+    inset 0px -5px 0px 0px rgba(0, 0, 0, 0.3),
+    inset 0px 2px 0px 0px rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.8);
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.15s ease-in-out;
+  font-family: "Optimus";
+  font-weight: 600;
+  width: 100%;
 }
 
 .home-btn:active {
-    box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.2),
-    inset 0px 0px 0px 0px rgba(0,0,0,0.3),
-    inset 0px 0px 0px 0px rgba(255,255,255,0.5);
-    padding-bottom: 20px;
+  box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.2),
+    inset 0px 0px 0px 0px rgba(0, 0, 0, 0.3),
+    inset 0px 0px 0px 0px rgba(255, 255, 255, 0.5);
+  padding-bottom: 20px;
+}
+
+.winner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.clock-btn {
+  font-size: 100px;
 }
