@@ -87,9 +87,6 @@ export default function Clock() {
         return `${minutes}:${seconds}`
     }
 
-    useEffect(() => {
-        console.log(changeTurn)
-    }, [changeTurn])
 
 
     return <div>
