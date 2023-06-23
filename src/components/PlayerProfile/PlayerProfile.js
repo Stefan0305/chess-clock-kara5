@@ -2,7 +2,7 @@ export default function PlayerProfile({data}){
 
     console.log(data)
 
-    return <div>
+    return <div className="w-75">
         <h5>Name: {data.name}</h5>
         <p>Rank: {data.rank}</p>
         <p>Matches played: {data.score.played}</p>
