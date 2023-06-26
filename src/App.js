@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.css'
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 
 // components
 import { TimeContext } from './context/TimeContext';
@@ -16,6 +16,17 @@ import Register from './pages/Register/Register';
 function App() {
 
   const [mode, setMode] = useState()
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetch(`https://chess-clock-kara5-backend.onrender.com/leaderboard`)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Ping server every 14 minutes")
+            })
+    }, 840000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div>
