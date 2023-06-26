@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState, useContext } from "react"
 import { TimeContext } from "../../context/TimeContext";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // components
 import PlayerPicker from "../../components/PlayerPicker/PlayerPicker";
+import ChooseWinner from "../../components/chooseWinner/chooseWinner";
 
 export default function Clock() {
 
@@ -20,8 +21,8 @@ export default function Clock() {
     const [player2ID, setPlayer2ID] = useState()
     const [winner, setWinner] = useState()
     const [loser, setLoser] = useState()
-    const [winnerName, setWinnerName] = useState()
-    const navigate = useNavigate()
+    const [winnerName, setWinnerName] = useState(false)
+    const [chooseWinner, setChooseWinner] = useState(false)
 
     useEffect(() => {
         let interval;
@@ -77,12 +78,6 @@ export default function Clock() {
         }
     }
 
-    function quitGame() {
-        if (window.confirm("Are you sure you want to quit? Points will not be scored")) {
-            navigate('/')
-        }
-    }
-
     function convertTime(sec) {
         let minutes = Math.floor(sec / 60)
         let seconds = sec % 60
@@ -93,6 +88,8 @@ export default function Clock() {
 
 
     return <div>
+
+        {/* when the game is ready render the clock */}
         {
             gameReady ?
                 <div className="clock bg-dark vh-100 vw-100 p-3 d-flex flex-column gap-3 justify-content-between">
@@ -102,7 +99,7 @@ export default function Clock() {
                     </button>
                     <div className="d-flex gap-3 justify-content-between">
                         <button className="p-3 btn btn-warning flex-grow-1" onClick={() => { togglePause() }}>Pause game!</button>
-                        <button className="p-3 btn btn-danger" onClick={() => { quitGame() }}>
+                        <button className="p-3 btn btn-danger" onClick={() => { setChooseWinner(true) }}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
                                 <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
@@ -117,9 +114,11 @@ export default function Clock() {
                 :
                 <PlayerPicker setGameReady={setGameReady} player1name={player1name} player2name={player2name} setPlayer1name={setPlayer1name} setPlayer2name={setPlayer2name} setPlayer1ID={setPlayer1ID} setPlayer2ID={setPlayer2ID} />
         }
+
+        {/* when time runs out show the winner */}
         {
             gameOver ?
-                <div className="winner-overlay position-fixed vw-100 vh-100">
+                <div className="winner-overlay">
                     <p>Winner is {winnerName} !!!</p>
                     <Link to="/" className="btn btn-warning d-inline-flex align-items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -130,6 +129,11 @@ export default function Clock() {
                 </div>
                 :
                 null
+        }
+
+        {/* if user quits the game before time ends render choose winner menu */}
+        {
+            chooseWinner ? <ChooseWinner setClock1={setClock1} setClock2={setClock2} setChooseWinner={setChooseWinner} player1name= {player1name} player2name={player2name} /> : null
         }
     </div>
 }
