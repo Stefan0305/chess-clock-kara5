@@ -17,11 +17,16 @@ export default function PlayerPicker(props) {
     }, [])
 
     function handleConfirm() {
-        if (select1 !== 'None' && select2 !== 'None') {
-            props.setGameReady(true)
-        } else {
+        console.log( select1)
+        console.log( select2)
+        if((select1 === select2) && (select1 !== "None" || select2 !== "None")) {
+            alert("Don't boost your rank against yourself!")
+        } else if (select1 === "None" || select2 === "None") {
             alert("Pick players")
+        } else {
+            props.setGameReady(true)
         }
+
     }
 
 
@@ -63,7 +68,7 @@ export default function PlayerPicker(props) {
                     const split = arr.split(',')
                     props.setPlayer2name(split[0])
                     props.setPlayer2ID(split[1])
-                    setSelect2(split[1])
+                    setSelect2(split[0])
                 }}>
                     <option value="None">Pick a player</option>
                     {players?.map((player, index) => {
